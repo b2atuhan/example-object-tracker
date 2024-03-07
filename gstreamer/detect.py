@@ -104,31 +104,31 @@ def generate_svg(src_size, inference_size, inference_box, objs, labels, text_lin
                              fill='none', stroke='red', stroke_width='2'))
             dwg.add(dwg.line(start=(20, 10), end=(80, 50)
     else:
-        for obj in objs:
-            x0, y0, x1, y1 = list(obj.bbox)
-            # Relative coordinates.
-            x, y, w, h = x0, y0, x1 - x0, y1 - y0
-            # Absolute coordinates, input tensor space.
-            x, y, w, h = int(x * inf_w), int(y *
+      for obj in objs:
+          x0, y0, x1, y1 = list(obj.bbox)
+          # Relative coordinates.
+          x, y, w, h = x0, y0, x1 - x0, y1 - y0
+          # Absolute coordinates, input tensor space.
+          x, y, w, h = int(x * inf_w), int(y *
                                              inf_h), int(w * inf_w), int(h * inf_h)
             # Subtract boxing offset.
-            x, y = x - box_x, y - box_y
-            # Scale to source coordinate space.
-            x, y, w, h = x * scale_x, y * scale_y, w * scale_x, h * scale_y
-            percent = int(100 * obj.score)
-            label = '{}% {}'.format(percent, labels.get(obj.id, obj.id))
-            shadow_text(dwg, x, y - 5, label)
-            dwg.add(dwg.rect(insert=(x, y), size=(w, h),
+          x, y = x - box_x, y - box_y
+          # Scale to source coordinate space.
+          x, y, w, h = x * scale_x, y * scale_y, w * scale_x, h * scale_y
+          percent = int(100 * obj.score)
+          label = '{}% {}'.format(percent, labels.get(obj.id, obj.id))
+          shadow_text(dwg, x, y - 5, label)
+          dwg.add(dwg.rect(insert=(x, y), size=(w, h),
+                           fill='none', stroke='red', stroke_width='2'))
+          new_w=(w/10)
+          new_h=(h/10)
+          new_x=(x+(w/2))
+          new_y=(y+(h/2))
+          dwg.add(dwg.rect(insert=(new_x, new_y), size=(5,5),
                              fill='none', stroke='red', stroke_width='2'))
-            new_w=(w/10)
-            new_h=(h/10)
-            new_x=(x+(w/2))
-            new_y=(y+(h/2))
-            dwg.add(dwg.rect(insert=(new_x, new_y), size=(5,5),
-                             fill='none', stroke='red', stroke_width='2'))
-            dwg.add(dwg.line(start=(20, 10), end=(80, 50)
+          dwg.add(dwg.line(start=(20, 10), end=(80, 50)
 
-    return dwg.tostring()
+      return dwg.tostring()
 
 
 class BBox(collections.namedtuple('BBox', ['xmin', 'ymin', 'xmax', 'ymax'])):
