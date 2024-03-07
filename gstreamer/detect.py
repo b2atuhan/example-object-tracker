@@ -100,7 +100,7 @@ def generate_svg(src_size, inference_size, inference_box, objs, labels, text_lin
             new_h=(h/10)
             new_x=(x+(w/2))
             new_y=(y+(h/2))
-            dwg.add(dwg.rect(insert=(new_x, new_y), size=(new_w, new_h),
+            dwg.add(dwg.rect(insert=(new_x, new_y), size=(5, 5),
                              fill='none', stroke='red', stroke_width='2'))
     else:
         for obj in objs:
@@ -123,7 +123,7 @@ def generate_svg(src_size, inference_size, inference_box, objs, labels, text_lin
             new_h=(h/10)
             new_x=(x+(w/2))
             new_y=(y+(h/2))
-            dwg.add(dwg.rect(insert=(new_x, new_y), size=(new_w, new_h),
+            dwg.add(dwg.rect(insert=(new_x, new_y), size=(5,5),
                              fill='none', stroke='red', stroke_width='2'))
     return dwg.tostring()
 
