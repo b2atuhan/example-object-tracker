@@ -96,7 +96,9 @@ def generate_svg(src_size, inference_size, inference_box, objs, labels, text_lin
             shadow_text(dwg, x, y - 5, label)
             dwg.add(dwg.rect(insert=(x, y), size=(w, h),
                              fill='none', stroke='red', stroke_width='2'))
-            dwg.add(dwg.rect(insert=(x+(w/2), y+(h/2), size=(w/10, h/10),
+            new_w=(w/10)
+            new_h=(h/10)
+            dwg.add(dwg.rect(insert=(x+(w/2), y+(h/2), size=(new_w, new_h),
                              fill='none', stroke='red', stroke_width='2'))
     else:
         for obj in objs:
@@ -115,7 +117,9 @@ def generate_svg(src_size, inference_size, inference_box, objs, labels, text_lin
             shadow_text(dwg, x, y - 5, label)
             dwg.add(dwg.rect(insert=(x, y), size=(w, h),
                              fill='none', stroke='red', stroke_width='2'))
-             dwg.add(dwg.rect(insert=(x+(w/2), y+(h/2), size=(w/10, h/10),
+            new_w=(w/10)
+            new_h=(h/10)
+            dwg.add(dwg.rect(insert=(x+(w/2), y+(h/2), size=(new_w, new_h),
                              fill='none', stroke='red', stroke_width='2'))
     return dwg.tostring()
 
